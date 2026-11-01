@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f8fc">
+  <title>دوام | إدارة الحضور والموظفين</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="motion.css">
+</head>
+<body>
+  <section class="login-screen" id="loginScreen" aria-label="تسجيل الدخول">
+    <div class="login-layout">
+      <div class="login-aside"><div class="login-brand"><div class="brand-mark"><i data-lucide="scan-line"></i></div><div><div class="brand-name">دوام</div><div class="brand-sub">إدارة فريقك بذكاء</div></div></div><div class="login-message"><h1>كل يوم يبدأ<br>بانضباط أفضل.</h1><p>تابع حضور فريقك، نظّم ساعات العمل، واطّلع على الرواتب من مكان واحد.</p></div><div class="login-scene" aria-hidden="true"><div class="scene-card"><div class="scene-top"><span>ملخص الفريق</span><span class="scene-live"></span></div><div class="scene-content"><div class="scene-bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="scene-metric"><span>نسبة الحضور</span><strong>٩٢٪</strong></div></div></div><div class="scene-chip"><span class="scene-chip-mark">✓</span><span>الحضور اليومي</span></div></div><div class="login-aside-foot">جميع الحقوق محفوظة للمبرمج TITO · دوام</div></div>
+      <div class="login-form-side"><form class="login-form" id="loginForm"><h2>تسجيل الدخول</h2><p>أدخل بيانات حسابك الشخصي للمتابعة إلى النظام.</p><div class="login-error" id="loginError" role="alert"></div><div class="field"><label for="loginUsername">اسم المستخدم</label><input id="loginUsername" name="username" autocomplete="username" required></div><div class="field"><label for="loginPassword">كلمة المرور</label><input id="loginPassword" name="password" type="password" autocomplete="current-password" required></div><button class="btn btn-primary login-submit" type="submit">دخول إلى النظام <i data-lucide="arrow-left"></i></button></form></div>
+    </div>
+  </section>
+  <div class="app auth-locked" id="appRoot">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark"><i data-lucide="scan-line"></i></div><div><div class="brand-name">دوام</div><div class="brand-sub">إدارة فريقك بذكاء</div></div></div>
+      <div class="nav-label">القائمة الرئيسية</div>
+      <nav class="nav" aria-label="القائمة الرئيسية">
+        <button class="nav-btn active" data-view="overview"><i data-lucide="layout-dashboard"></i>نظرة عامة</button>
+        <button class="nav-btn" data-view="employees"><i data-lucide="users-round"></i>الموظفون <span class="nav-count" id="navEmployeeCount">١٢</span></button>
+        <button class="nav-btn" data-view="attendance"><i data-lucide="calendar-check-2"></i>الحضور والانصراف</button>
+        <button class="nav-btn" data-view="schedules"><i data-lucide="clock-3"></i>مواعيد العمل</button>
+        <button class="nav-btn" data-view="payroll"><i data-lucide="wallet"></i>الرواتب والمكافآت</button>
+        <button class="nav-btn" data-view="requests"><i data-lucide="clipboard-check"></i>طلبات الموظفين <span class="nav-count" id="navRequestCount">٠</span></button>
+        <button class="nav-btn" data-view="reports"><i data-lucide="chart-no-axes-combined"></i>التقارير</button>
+      </nav>
+      <div class="nav-label" style="margin-top:20px">إدارة الحساب</div>
+      <nav class="nav"><button class="nav-btn" data-view="settings"><i data-lucide="settings-2"></i>الإعدادات</button></nav>
+      <div class="sidebar-bottom">
+        <div class="help-box"><strong>تحتاج إلى مساعدة؟</strong><p>فريقنا جاهز لمساعدتك في إدارة فريقك.</p><button id="helpBtn">تواصل مع الدعم ←</button></div>
+        <div class="profile"><div class="avatar" id="profileAvatar">م ع</div><div class="profile-info"><strong id="profileName">TITO</strong><span id="profileRole">مدير النظام</span></div><button class="icon-btn logout-btn" id="logoutBtn" aria-label="تسجيل الخروج" title="تسجيل الخروج"><i data-lucide="log-out"></i></button></div>
+      </div>
+    </aside>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <main>
+      <header class="topbar"><div style="display:flex;align-items:center;gap:11px"><button class="icon-btn mobile-menu" id="menuBtn" aria-label="فتح القائمة"><i data-lucide="menu"></i></button><div><div class="crumb">الرئيسية / <span id="crumbTitle">نظرة عامة</span></div><h1 class="page-title" id="pageTitle">نظرة عامة</h1></div></div><div class="top-actions"><div class="date-pill"><i data-lucide="calendar-days"></i><span id="todayLabel"></span></div><div class="notification-wrap"><button class="icon-btn notification-trigger" id="notifBtn" aria-label="الإشعارات" aria-expanded="false" aria-controls="notificationPanel"><i data-lucide="bell"></i><span class="notification-count" id="notificationCount" hidden></span></button><section class="notification-panel" id="notificationPanel" aria-label="مركز الإشعارات" hidden></section></div><button class="icon-btn" id="quickAdd" aria-label="إضافة موظف" title="إضافة موظف"><i data-lucide="user-round-plus"></i></button></div></header>
+      <div id="viewRoot"></div>
+      <footer class="developer-credit">جميع الحقوق محفوظة للمبرمج TITO</footer>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true"><div class="modal" id="modalContent"></div></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>

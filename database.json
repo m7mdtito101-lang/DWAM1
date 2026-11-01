@@ -1,0 +1,12 @@
+{
+  "format": "dawam-local-backup",
+  "version": 1,
+  "createdAt": null,
+  "data": {
+    "dawamEmployees": [],
+    "dawamRequests": [],
+    "dawamNotifications": [],
+    "dawamAdminPassword": "",
+    "dawamCompany": ""
+  }
+}
